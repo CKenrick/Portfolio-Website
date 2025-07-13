@@ -1,0 +1,244 @@
+@font-face {
+  font-family: MavenPro;
+  src: url(./fonts/MavenPro/MavenProLight-300.otf); }
+
+/* Material Design Box-Shadows */
+/* Bootstrap Mobile Grid Breakpoints (for Reference Only) */
+body {
+  background-color: #292F36;
+  color: #06D6A0;
+  font-family: MavenPro;
+  overflow-x: hidden; }
+
+/* Color Classes */
+.white {
+  color: #fafafa; }
+
+.white-bg {
+  background-color: #fafafa; }
+
+.light-grey {
+  color: #ECEFF1; }
+
+.light-grey-bg {
+  background-color: #ECEFF1; }
+
+.slate {
+  color: #607D8B; }
+
+.slate-bg {
+  background-color: #607D8B; }
+
+.dark-blue {
+  background-color: #073B4C; }
+
+.dark-blue-bg {
+  background-color: #073B4C; }
+
+.blue {
+  color: #118AB2; }
+
+.blue-bg {
+  background-color: #118AB2; }
+
+.green {
+  color: #66BB6A; }
+
+.green-bg {
+  background-color: #66BB6A; }
+
+.teal {
+  color: #A4F0DC; }
+
+.teal-bg {
+  background-color: #A4F0DC; }
+
+.aqua {
+  color: #00CECB; }
+
+.aqua-bg {
+  background-color: #00CECB; }
+
+.yellow {
+  color: #FFD166; }
+
+.yellow-bg {
+  background-color: #FFD166; }
+
+.red {
+  color: #EF476F; }
+
+.red-bg {
+  background-color: #EF476F; }
+
+/* Utilities */
+.border-top {
+  border-top: #fafafa solid 3px; }
+
+.border-bottom {
+  border-bottom: #fafafa solid 3px; }
+
+.border-left {
+  border-left: #fafafa solid 3px; }
+
+.border-right {
+  border: #fafafa solid 3px; }
+
+.border-main {
+  border: #fafafa solid 6px; }
+
+.text-center {
+  text-align: center !important; }
+
+.container {
+  margin-top: 24px;
+  margin-bottom: 78px;
+  padding: 0;
+  z-index: 1; }
+
+/* General Classes */
+.resume-container {
+  background-color: #fafafa;
+  border-radius: 6px; }
+
+.container-underlay {
+  background-color: #A4F0DC;
+  opacity: .1;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+  top: 0;
+  bottom: 0; }
+
+.background-gradient-container {
+  overflow: hidden; }
+
+.background-gradient-left {
+  width: 55%;
+  margin-left: -35%;
+  height: 500px;
+  border: solid 1px #292F36;
+  background-image: -webkit-linear-gradient(153.43deg, #EF476F 5%, #FFD166 95%);
+  background-image: -o-linear-gradient(153.43deg, #EF476F 5%, #FFD166 95%);
+  background-image: linear-gradient(153.43deg, #EF476F 5%, #FFD166 95%);
+  background-size: 100% 100%;
+  background-position: right top;
+  transform: rotate(45deg);
+  z-index: -1;
+  position: absolute;
+  opacity: .3; }
+
+.background-gradient-right {
+  width: 95%;
+  margin-left: 45%;
+  height: 500px;
+  border: solid 1px #292F36;
+  background-image: -webkit-linear-gradient(153.43deg, #06D6A0 5%, #118AB2 95%);
+  background-image: -o-linear-gradient(153.43deg, #06D6A0 5%, #118AB2 95%);
+  background-image: linear-gradient(153.43deg, #06D6A0 5%, #118AB2 95%);
+  background-size: 100% 100%;
+  background-position: right top;
+  transform: rotate(135deg);
+  z-index: -1;
+  position: absolute;
+  opacity: .3; }
+
+h1, a {
+  color: #06D6A0; }
+
+a:hover, a:focus, a:active, .App-footer-logo:hover {
+  color: #A4F0DC;
+  transition: all .2s ease-in-out;
+  transform: scale(1.2); }
+
+.navbar {
+  background-color: #262B32;
+  color: #06D6A0;
+  z-index: 1; }
+  .navbar .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(78, 205, 196, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); }
+
+.img-container {
+  text-align: center; }
+
+.about-img, .resume-img {
+  border-radius: 6px;
+  height: auto;
+  width: auto;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3); }
+
+.about-img {
+  border: #fafafa solid 6px;
+  max-height: 100%;
+  max-width: 100%; }
+
+.resume-img {
+  max-height: 150px;
+  max-width: 150px; }
+
+.resume-titles {
+  flex: auto; }
+
+.resume-main {
+  background-color: rgba(7, 59, 76, 0.7);
+  border-radius: 6px; }
+
+.sidebar-info {
+  border-radius: 0 6px 6px 0; }
+
+.sidebar-details {
+  border-radius: 0 6px 6px 0; }
+
+.resume-border {
+  border: #fafafa solid 6px; }
+
+.employment-items {
+  font-size: 14px; }
+
+.portfolio-footer {
+  background-color: #262B32;
+  color: #06D6A0;
+  height: 54px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  font-size: 16px;
+  text-align: center;
+  z-index: 2; }
+  .portfolio-footer span {
+    margin-top: 12px;
+    text-align: center;
+    display: block; }
+
+.App {
+  text-align: center; }
+
+.App-logo {
+  height: 30px; }
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white; }
+
+.App-footer-logo {
+  height: 30px; }
+
+.App-intro {
+  font-size: large; }
+
+.connect-icon svg {
+  font-size: 2em; }
+
+/* Media Queries */
+@media (max-width: 480px) {
+  .about-img {
+    width: 200px;
+    text-align: center; } }
+
+/* @media (min-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+} */

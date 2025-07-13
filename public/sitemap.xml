@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://chriskenrick.dev/</loc>
+    <lastmod>2025-07-12T01:38:41.527Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>https://chriskenrick.dev/#about</loc>
+    <lastmod>2025-07-12T01:38:41.527Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chriskenrick.dev/#projects</loc>
+    <lastmod>2025-07-12T01:38:41.527Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chriskenrick.dev/#resume</loc>
+    <lastmod>2025-07-12T01:38:41.527Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chriskenrick.dev/#contact</loc>
+    <lastmod>2025-07-12T01:38:41.527Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Static Assets -->
+  <url>
+    <loc>https://chriskenrick.dev/manifest.json</loc>
+    <lastmod>2025-07-12T01:38:41.527Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+</urlset>

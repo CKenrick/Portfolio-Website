@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* Custom font face */
+@font-face {
+    font-family: MavenPro;
+    src: url(./fonts/MavenPro/MavenProLight-300.otf);
+}
+
+/* Custom base styles */
+body {
+  font-family: MavenPro, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.light body {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.dark body {
+  background-color: #1a1a1a;
+  color: #e2e2e2;
+}
+
+h1, a {
+  transition: color 0.3s ease;
+}
+
+.light h1, .light a {
+  color: #06D6A0;
+}
+
+.dark h1, .dark a {
+  color: #04B082;
+}
+
+a:hover, a:focus, a:active {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.05);
+}
+
+.light a:hover, .light a:focus, .light a:active {
+  color: #04B082;
+}
+
+.dark a:hover, .dark a:focus, .dark a:active {
+  color: #06D6A0;
+}
+
+/* Custom components */
+  .btn-primary {
+    background-color: #10b981;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #34d399;
+    transform: scale(1.05);
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .gradient-bg-left {
+    position: fixed;
+    width: 60%;
+    height: 100vh;
+    background: linear-gradient(153.43deg, #EF476F 5%, #FFD166 95%);
+    transform: rotate(45deg);
+    opacity: 0.15;
+    z-index: -1;
+    top: -25vh;
+    left: -30%;
+  }
+  
+  .gradient-bg-right {
+    position: fixed;
+    width: 60%;
+    height: 100vh;
+    background: linear-gradient(153.43deg, #06D6A0 5%, #118AB2 95%);
+    transform: rotate(135deg);
+    opacity: 0.15;
+    z-index: -1;
+    top: -25vh;
+    right: -30%;
+  }
+  
+  .navbar-custom {
+    background-color: #262B32;
+    color: #06D6A0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+  }
+  
+  .footer-custom {
+    background-color: #262B32;
+    color: #06D6A0;
+    height: 3.5rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .resume-section {
+    background-color: rgba(7, 59, 76, 0.7);
+    border-radius: 0.5rem;
+    border: 4px solid white;
+  }
+  
+  .sidebar-section {
+    background-color: #118AB2;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-left: 4px solid white;
+  }
+  
+  .profile-img {
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 4px solid white;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .connect-icon {
+    font-size: 2.25rem;
+    transition: all 0.2s;
+  }
+  
+  .connect-icon:hover {
+    transform: scale(1.25);
+  }
+  
+  .section-title {
+    color: #FFD166;
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  
+  .underlay {
+    background-color: #A4F0DC;
+    opacity: 0.05;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+  }
+
+  /* PWA Installer animations */
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

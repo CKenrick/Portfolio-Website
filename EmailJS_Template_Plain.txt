@@ -1,0 +1,31 @@
+NEW CONTACT FORM SUBMISSION
+========================================
+
+Someone has reached out through your portfolio website!
+
+CONTACT DETAILS:
+----------------------------------------
+Name: {{from_name}}
+Email: {{from_email}}
+Subject: {{subject}}
+
+MESSAGE:
+----------------------------------------
+{{message}}
+
+========================================
+
+This message was sent from the contact form on your portfolio website.
+
+To reply, simply respond to this email or contact {{from_name}} directly at {{from_email}}.
+
+Best regards,
+Christopher Kenrick
+christopher.kenrick@gmail.com
+
+Portfolio: https://christopherkenrick.com
+GitHub: https://github.com/christopherkenrick  
+LinkedIn: https://linkedin.com/in/christopherkenrick
+
+----------------------------------------
+Received: {{date}} at {{time}} 

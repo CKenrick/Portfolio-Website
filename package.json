@@ -1,0 +1,64 @@
+{
+	"name": "portfolio",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"@emailjs/browser": "^4.4.1",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"react-icons": "^5.3.0",
+		"react-router-dom": "^6.26.0"
+	},
+	"scripts": {
+		"start": "vite",
+		"stop": "ps -ax | grep vite",
+		"build": "vite build",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:run": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"test:watch": "vitest --watch",
+		"preview": "vite preview",
+		"optimize-images": "node scripts/optimize-images.js",
+		"generate-sitemap": "node scripts/generate-sitemap.js",
+		"seo-setup": "npm run generate-sitemap",
+		"validate-seo": "node scripts/validate-seo.js"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4.1.11",
+		"@tailwindcss/vite": "^4.1.11",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.0.0",
+		"@testing-library/user-event": "^14.6.1",
+		"@vitejs/plugin-react": "^4.6.0",
+		"@vitest/coverage-v8": "^3.2.4",
+		"autoprefixer": "^10.4.21",
+		"jsdom": "^26.1.0",
+		"postcss": "^8.5.6",
+		"sass": "^1.69.0",
+		"sharp": "^0.34.3",
+		"tailwindcss": "^4.1.11",
+		"vite": "^7.0.4",
+		"vitest": "^3.2.4"
+	}
+}
