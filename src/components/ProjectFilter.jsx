@@ -5,6 +5,7 @@ const ProjectFilter = ({
   projects, 
   onFilterChange, 
   availableTechnologies = [],
+  githubStats,
   className = "" 
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -50,11 +51,11 @@ const ProjectFilter = ({
 
   const technologies = availableTechnologies.length > 0 ? availableTechnologies : getAllTechnologies();
 
-  // No initialization logic needed - Projects component handles initial sorting
-
-  // Filter and sort function (called manually, not automatically)
+  // Filter and sort function
   const getFilteredProjects = useCallback(() => {
-    if (!projects) return [];
+    if (!projects || !Array.isArray(projects)) return [];
+
+    console.log('Filtering projects with:', { searchTerm, selectedTechnologies, sortBy, sortDirection });
 
     const filtered = projects.filter(project => {
       // Search filter
@@ -75,6 +76,8 @@ const ProjectFilter = ({
 
       return matchesSearch && matchesTech;
     });
+
+    console.log('Filtered projects:', filtered.length, 'from', projects.length);
 
     // Sort filtered projects
     return filtered.sort((a, b) => {
@@ -104,13 +107,19 @@ const ProjectFilter = ({
     });
   }, [projects, searchTerm, selectedTechnologies, sortBy, sortDirection]);
 
+  // Auto-filter whenever filter states change
+  useEffect(() => {
+    if (!isMountedRef.current || !projects || !Array.isArray(projects)) return;
+    
+    console.log('Filter state changed, triggering filtering...');
+    const filteredProjects = getFilteredProjects();
+    onFilterChange(filteredProjects);
+  }, [searchTerm, selectedTechnologies, sortBy, sortDirection, projects, getFilteredProjects, onFilterChange]);
+
   // Handle search changes
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    if (isMountedRef.current) {
-      const filtered = getFilteredProjects();
-      onFilterChange(filtered);
-    }
+    // Filtering will be triggered by useEffect
   };
 
   const handleTechnologyToggle = (tech) => {
@@ -119,64 +128,14 @@ const ProjectFilter = ({
       : [...selectedTechnologies, tech];
     
     setSelectedTechnologies(newSelectedTechnologies);
-    
-    if (isMountedRef.current) {
-      // Update searchTerm state first, then calculate filtered projects
-      const filtered = projects.filter(project => {
-        const matchesSearch = searchTerm === '' || 
-          project.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          project.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          project.description?.toLowerCase().includes(searchTerm.toLowerCase());
-
-        const matchesTech = newSelectedTechnologies.length === 0 || 
-          newSelectedTechnologies.some(tech => {
-            return (
-              project.languages && Object.keys(project.languages).includes(tech) ||
-              project.technologies && project.technologies.includes(tech) ||
-              project.topics && project.topics.includes(tech)
-            );
-          });
-
-        return matchesSearch && matchesTech;
-      }).sort((a, b) => {
-        let aValue, bValue;
-        
-        switch (sortBy) {
-          case 'stars':
-            aValue = a.stargazers_count || 0;
-            bValue = b.stargazers_count || 0;
-            break;
-          case 'name':
-            aValue = (a.name || a.title || '').toLowerCase();
-            bValue = (b.name || b.title || '').toLowerCase();
-            break;
-          case 'updated':
-          default:
-            aValue = new Date(a.updated_at || a.created_at || '2020-01-01');
-            bValue = new Date(b.updated_at || b.created_at || '2020-01-01');
-            break;
-        }
-
-        if (sortDirection === 'asc') {
-          return aValue > bValue ? 1 : -1;
-        } else {
-          return aValue < bValue ? 1 : -1;
-        }
-      });
-      
-      onFilterChange(filtered);
-    }
+    // Filtering will be triggered by useEffect
   };
 
   const handleSortChange = (e) => {
     const [sort, direction] = e.target.value.split('-');
     setSortBy(sort);
     setSortDirection(direction);
-    
-    if (isMountedRef.current) {
-      const filtered = getFilteredProjects();
-      onFilterChange(filtered);
-    }
+    // Filtering will be triggered by useEffect
   };
 
   const clearFilters = () => {
@@ -184,19 +143,11 @@ const ProjectFilter = ({
     setSelectedTechnologies([]);
     setSortBy('updated');
     setSortDirection('desc');
-    
-    if (isMountedRef.current && projects) {
-      // Reset to all projects with default sort
-      const sorted = [...projects].sort((a, b) => {
-        const aValue = new Date(a.updated_at || a.created_at || '2020-01-01');
-        const bValue = new Date(b.updated_at || b.created_at || '2020-01-01');
-        return aValue < bValue ? 1 : -1; // desc
-      });
-      onFilterChange(sorted);
-    }
+    // Filtering will be triggered by useEffect with cleared values
   };
 
   const hasActiveFilters = searchTerm || selectedTechnologies.length > 0;
+  const filteredCount = getFilteredProjects().length;
 
   return (
     <div className={`mb-8 ${className}`}>
@@ -287,7 +238,12 @@ const ProjectFilter = ({
 
           {/* Results Count */}
           <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            {projects && projects.length > 0 ? projects.length : 0} projects total
+            Showing {filteredCount} of {projects?.length || 0} projects
+            {githubStats && (
+              <span className="ml-4">
+                • {githubStats.public_repos} total repositories
+              </span>
+            )}
           </div>
         </div>
       )}

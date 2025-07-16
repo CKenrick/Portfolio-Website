@@ -26,6 +26,7 @@ const fetchWithCache = async (url, options = {}) => {
       ...options,
       headers: {
         'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'Portfolio-App',
         ...options.headers,
       },
     });
@@ -83,23 +84,38 @@ export const githubApi = {
 
   // Get featured repositories (manually curated list)
   async getFeaturedRepositories() {
-    const featuredRepos = [
-      'github-portfolio',
-      'CKenrick', // Your profile README repo
-      // Add more repository names that you want to feature
-    ];
-
     try {
+      console.log('Fetching all repositories...');
       const allRepos = await this.getRepositories({ per_page: 100 });
+      console.log('All repositories fetched:', allRepos.length);
       
-      // Filter for featured repos and add any that exist
-      const featured = allRepos.filter(repo => 
-        featuredRepos.includes(repo.name) || 
-        repo.stargazers_count > 0 ||
-        repo.forks_count > 0
-      );
+      if (!allRepos || allRepos.length === 0) {
+        console.log('No repositories found, returning empty array');
+        return [];
+      }
+      
+      // Filter for interesting repos (not forks, has description, updated recently)
+      const featured = allRepos.filter(repo => {
+        const isNotFork = !repo.fork;
+        const hasDescription = repo.description && repo.description.length > 10;
+        const isPublic = !repo.private;
+        const isNotArchived = !repo.archived;
+        
+        console.log(`Repo ${repo.name}: fork=${repo.fork}, desc=${!!repo.description}, public=${!repo.private}, archived=${repo.archived}`);
+        
+        return isNotFork && hasDescription && isPublic && isNotArchived;
+      });
 
-      return featured.slice(0, 6); // Return top 6 featured repos
+      console.log('Featured repositories after filtering:', featured.length);
+      
+      // Sort by updated date and take top 6
+      const sortedFeatured = featured.sort((a, b) => 
+        new Date(b.updated_at) - new Date(a.updated_at)
+      ).slice(0, 6);
+
+      console.log('Final featured repositories:', sortedFeatured.map(r => r.name));
+      return sortedFeatured;
+      
     } catch (error) {
       console.error('Error fetching featured repositories:', error);
       return [];

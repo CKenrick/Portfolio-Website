@@ -88,7 +88,7 @@ const Connect = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
               <button
                 onClick={() => setShowContactForm(true)}
                 className="flex items-center justify-center px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-primary-dark dark:hover:bg-primary-light transition-colors duration-200 transform hover:scale-105"
@@ -96,14 +96,6 @@ const Connect = () => {
                 <FaComments className="mr-2" />
                 Send a Message
               </button>
-              
-              <a
-                href="mailto:christopher.kenrick@gmail.com?Subject=Project%20Collaboration"
-                className="flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-              >
-                <FaEnvelope className="mr-2" />
-                Email Directly
-              </a>
             </div>
           </div>
 

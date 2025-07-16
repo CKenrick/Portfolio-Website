@@ -8,6 +8,7 @@ import ScrollProgressBar from './animations/ScrollProgressBar';
 import BackToTop from './animations/BackToTop';
 import ImageOptimizationDebugger from './dev/ImageOptimizationDebugger';
 import SEODashboard from './dev/SEODashboard';
+import DebugInfo from './DebugInfo';
 import { useSEOOnScroll, useSEOMonitoring } from '../hooks/useSEO';
 
 // Define sections for SEO management outside component to prevent recreation
@@ -115,6 +116,7 @@ const App = () => {
           {/* Development tools */}
           {process.env.NODE_ENV === 'development' && (
             <>
+              <DebugInfo />
               <ImageOptimizationDebugger />
               <SEODashboard getSEOMetrics={getSEOMetrics} />
             </>

@@ -35,12 +35,6 @@ const Footer = () => {
             >
               LinkedIn
             </a>
-            <a 
-              href="mailto:christopher.kenrick@gmail.com" 
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              Email
-            </a>
           </div>
         </div>
       </div>

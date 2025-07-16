@@ -21,7 +21,6 @@ To reply, simply respond to this email or contact {{from_name}} directly at {{fr
 
 Best regards,
 Christopher Kenrick
-christopher.kenrick@gmail.com
 
 Portfolio: https://christopherkenrick.com
 GitHub: https://github.com/christopherkenrick  

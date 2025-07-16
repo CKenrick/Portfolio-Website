@@ -39,164 +39,190 @@ const STATIC_PROJECTS = [
         icon: <FaExternalLinkAlt className="w-4 h-4" />
       }
     ]
-  },
-  {
-    id: 'ui-ux-design',
-    title: 'UI/UX Design',
-    description: 'Creating intuitive and beautiful user interfaces with modern design principles, accessibility standards, and responsive design patterns.',
-    technologies: ['Figma', 'Adobe Creative Suite', 'CSS', 'SCSS', 'Tailwind CSS'],
-    links: []
   }
 ];
 
 const Projects = () => {
-  const [githubStats, setGithubStats] = useState(null);
-  const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState(STATIC_PROJECTS); // Start with static projects
+  const [filteredProjects, setFilteredProjects] = useState(STATIC_PROJECTS);
+  const [loading, setLoading] = useState(false); // Start as not loading
   const [error, setError] = useState(null);
-  
-  // Track if component is mounted to prevent state updates after unmount
-  const isMountedRef = useRef(true);
+  const [githubStats, setGithubStats] = useState(null);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      isMountedRef.current = false;
-    };
-  }, []);
+  // Debug logging
+  console.log('Projects component rendered, loading:', loading, 'projects:', projects.length);
 
-  // Fetch GitHub data on mount
   useEffect(() => {
-    let isFetchMounted = true;
+    console.log('useEffect running - will fetch GitHub data');
     
-    const fetchData = async () => {
+    const fetchGitHubData = async () => {
       try {
-        if (!isMountedRef.current) return;
-        
+        console.log('Starting GitHub data fetch...');
         setLoading(true);
         setError(null);
         
-        // Fetch repositories and profile in parallel
-        const [repos, profile] = await Promise.all([
-          githubApi.getFeaturedRepositories(),
-          githubApi.getProfile().catch(() => null) // Don't fail if profile fetch fails
-        ]);
+        console.log('Fetching repositories...');
+        const repos = await githubApi.getFeaturedRepositories();
+        console.log('Repositories fetched:', repos.length);
 
-        if (!isFetchMounted || !isMountedRef.current) return;
-
-        // Fetch additional data for each repository
-        const enrichedRepos = await Promise.all(
-          repos.map(async (repo) => {
-            try {
-              const [languages, topics] = await Promise.all([
-                githubApi.getRepositoryLanguages(repo.name).catch(() => ({})),
-                githubApi.getRepositoryTopics(repo.name).catch(() => ({ names: [] }))
-              ]);
-
-              return {
-                ...repo,
-                languages,
-                topics: topics.names || []
-              };
-            } catch (error) {
-              console.warn(`Failed to fetch additional data for ${repo.name}:`, error);
-              return repo;
-            }
-          })
-        );
-
-        if (!isFetchMounted || !isMountedRef.current) return;
+        console.log('Fetching profile...');
+        const profile = await githubApi.getProfile().catch((err) => {
+          console.warn('Profile fetch failed:', err);
+          return null;
+        });
+        console.log('Profile fetched:', !!profile);
 
         // Set GitHub stats
         if (profile) {
           setGithubStats(profile);
         }
 
-        // Combine data and initialize both projects and filteredProjects
-        const allProjects = [...enrichedRepos, ...STATIC_PROJECTS];
+        // Combine GitHub repos with static projects
+        const allProjects = [...repos, ...STATIC_PROJECTS];
+        console.log('All projects combined:', allProjects.length);
         
-        // Sort projects by default (newest first)
-        const sortedProjects = [...allProjects].sort((a, b) => {
+        // Sort projects by date
+        const sortedProjects = allProjects.sort((a, b) => {
           const aValue = new Date(a.updated_at || a.created_at || '2020-01-01');
           const bValue = new Date(b.updated_at || b.created_at || '2020-01-01');
-          return aValue < bValue ? 1 : -1; // desc (newest first)
+          return aValue < bValue ? 1 : -1;
+        });
+        
+        console.log('Setting projects...');
+        setProjects(allProjects);
+        setFilteredProjects(sortedProjects);
+        console.log('Projects set successfully');
+        
+      } catch (err) {
+        console.error('Error fetching GitHub data:', err);
+        setError(err);
+        // Keep static projects on error
+      } finally {
+        console.log('GitHub fetch complete, setting loading to false');
+        setLoading(false);
+      }
+    };
+
+    // Start fetching immediately
+    fetchGitHubData();
+  }, []); // Empty dependency array - run once on mount
+
+  const handleFilterChange = useCallback((filtered) => {
+    setFilteredProjects(filtered || []);
+  }, []);
+
+  const refetch = useCallback(() => {
+    console.log('Refetch requested');
+    setError(null);
+    setLoading(true);
+    
+    const fetchGitHubData = async () => {
+      try {
+        console.log('Re-fetching repositories...');
+        const repos = await githubApi.getFeaturedRepositories();
+        console.log('Repositories re-fetched:', repos.length);
+
+        const profile = await githubApi.getProfile().catch((err) => {
+          console.warn('Profile re-fetch failed:', err);
+          return null;
+        });
+
+        if (profile) {
+          setGithubStats(profile);
+        }
+
+        const allProjects = [...repos, ...STATIC_PROJECTS];
+        const sortedProjects = allProjects.sort((a, b) => {
+          const aValue = new Date(a.updated_at || a.created_at || '2020-01-01');
+          const bValue = new Date(b.updated_at || b.created_at || '2020-01-01');
+          return aValue < bValue ? 1 : -1;
         });
         
         setProjects(allProjects);
         setFilteredProjects(sortedProjects);
         
       } catch (err) {
-        if (isFetchMounted && isMountedRef.current) {
-          setError(err);
-          
-          // Sort static projects by default (newest first)
-          const sortedStatic = [...STATIC_PROJECTS].sort((a, b) => {
-            const aValue = new Date(a.updated_at || a.created_at || '2020-01-01');
-            const bValue = new Date(b.updated_at || b.created_at || '2020-01-01');
-            return aValue < bValue ? 1 : -1; // desc (newest first)
-          });
-          
-          setProjects(STATIC_PROJECTS);
-          setFilteredProjects(sortedStatic);
-        }
+        console.error('Error re-fetching GitHub data:', err);
+        setError(err);
       } finally {
-        if (isFetchMounted && isMountedRef.current) {
-          setLoading(false);
-        }
+        setLoading(false);
       }
     };
-
-    fetchData();
-
-    return () => {
-      isFetchMounted = false;
-    };
+    
+    fetchGitHubData();
   }, []);
 
-  // Stable filter change handler - doesn't depend on anything that changes
-  const handleFilterChange = useCallback((filtered) => {
-    if (isMountedRef.current) {
-      setFilteredProjects(filtered || []);
-    }
-  }, []); // Empty dependency array - completely stable
-
-  // Refetch function
-  const refetch = useCallback(() => {
-    if (!isMountedRef.current) return;
-    window.location.reload();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="py-12 px-4 md:px-8 max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Portfolio
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Exploring my latest projects and contributions
-          </p>
-        </div>
-        <ProjectSkeletonGrid count={6} />
-      </section>
-    );
-  }
+  console.log('Rendering Projects component - loading:', loading, 'projects:', projects.length);
 
   return (
     <section className="py-12 px-4 md:px-8 max-w-6xl mx-auto">
-      {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Portfolio
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
-          A collection of my latest projects, open source contributions, and technical experiments. 
-          Each project represents a learning journey and a step forward in my development career.
+        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          Exploring my latest projects and contributions to the web development community
         </p>
-        
-        {/* GitHub Stats */}
-        {githubStats && (
+      </div>
+
+      {/* Show loading skeleton only while fetching GitHub data */}
+      {loading && (
+        <div className="mb-8">
+          <div className="text-center mb-6">
+            <p className="text-gray-600 dark:text-gray-400">
+              Loading GitHub projects...
+            </p>
+          </div>
+          <ProjectSkeletonGrid count={3} />
+        </div>
+      )}
+
+      {/* Show error message if GitHub fetch failed */}
+      {error && (
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-8">
+          <div className="flex items-center">
+            <FaExclamationTriangle className="text-yellow-500 mr-2" />
+            <div>
+              <p className="text-yellow-800 dark:text-yellow-200 font-medium">
+                Unable to load GitHub projects
+              </p>
+              <p className="text-yellow-700 dark:text-yellow-300 text-sm mt-1">
+                {error.message || 'Network error'}. Showing available projects.
+              </p>
+              <button
+                onClick={refetch}
+                className="mt-2 text-yellow-800 dark:text-yellow-200 hover:text-yellow-900 dark:hover:text-yellow-100 underline text-sm"
+              >
+                Try again
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Always show projects (static + any GitHub projects that loaded) */}
+      <div className="mb-8">
+        <ProjectFilter
+          projects={projects}
+          onFilterChange={handleFilterChange}
+          githubStats={githubStats}
+        />
+      </div>
+
+      <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProjects.map((project, index) => (
+          <ProjectCard 
+            key={project.id || project.name || index} 
+            project={project}
+            isGitHubProject={project.node_id !== undefined}
+            index={index}
+          />
+        ))}
+      </StaggeredList>
+
+      {/* GitHub info */}
+      {githubStats && (
+        <div className="mt-12 text-center">
           <div className="flex justify-center items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center">
               <FaGithub className="mr-1" />
@@ -211,92 +237,22 @@ const Projects = () => {
               <span>{githubStats.following} following</span>
             </div>
           </div>
-        )}
-      </div>
-
-      {/* Error State */}
-      {error && (
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-8">
-          <div className="flex items-center">
-            <FaExclamationTriangle className="text-yellow-500 mr-2" />
-            <div>
-              <p className="text-yellow-800 dark:text-yellow-200 font-medium">
-                Unable to load GitHub projects
-              </p>
-              <p className="text-yellow-700 dark:text-yellow-300 text-sm mt-1">
-                {error.message || error}. Showing static projects instead.
-              </p>
-              <button
-                onClick={refetch}
-                className="mt-2 text-yellow-800 dark:text-yellow-200 hover:text-yellow-900 dark:hover:text-yellow-100 underline text-sm"
-              >
-                Reload page
-              </button>
-            </div>
-          </div>
         </div>
       )}
 
-      {/* Project Filter */}
-      <ProjectFilter
-        projects={projects}
-        onFilterChange={handleFilterChange}
-      />
-
-      {/* Projects Grid */}
-      {filteredProjects.length > 0 ? (
-        <StaggeredList 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          animation="scaleIn"
-          staggerDelay={150}
-          duration={500}
-        >
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id || project.title || index}
-              project={project}
-              isGitHubProject={!!project.html_url}
-            />
-          ))}
-        </StaggeredList>
-      ) : (
-        <div className="text-center py-12">
-          <div className="text-gray-400 dark:text-gray-500 mb-4">
-            <FaGithub className="w-16 h-16 mx-auto mb-4" />
+      {/* Debug info in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <h4 className="font-semibold text-blue-800 mb-2">Debug Info:</h4>
+          <div className="text-sm text-blue-700">
+            <div>Projects: {projects.length}</div>
+            <div>Filtered: {filteredProjects.length}</div>
+            <div>Loading: {loading.toString()}</div>
+            <div>Error: {error ? error.message : 'None'}</div>
+            <div>GitHub Stats: {githubStats ? 'Loaded' : 'Not loaded'}</div>
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            No projects found
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400">
-            Try adjusting your search terms or filters
-          </p>
         </div>
       )}
-
-      {/* Footer */}
-      <div className="mt-12 text-center">
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
-          Want to collaborate on a project or have questions about my work?
-        </p>
-        <div className="flex justify-center space-x-4">
-          <a
-            href="https://github.com/CKenrick"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
-          >
-            <FaGithub className="mr-2" />
-            View All Repositories
-          </a>
-          <a
-            href="mailto:christopher.kenrick@gmail.com?Subject=Project%20Collaboration"
-            className="inline-flex items-center px-4 py-2 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-primary-dark dark:hover:bg-primary-light transition-colors duration-200"
-          >
-            <FaExternalLinkAlt className="mr-2" />
-            Get In Touch
-          </a>
-        </div>
-      </div>
     </section>
   );
 };
