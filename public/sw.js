@@ -11,11 +11,11 @@ const urlsToCache = [
 
 // Install event - cache resources
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Installing...');
+  //console.log('Service Worker: Installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Service Worker: Caching app shell');
+        //console.log('Service Worker: Caching app shell');
         return cache.addAll(urlsToCache);
       })
       .catch((error) => {
@@ -26,13 +26,13 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activating...');
+  //console.log('Service Worker: Activating...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Service Worker: Deleting old cache:', cacheName);
+            //console.log('Service Worker: Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -53,11 +53,11 @@ self.addEventListener('fetch', (event) => {
       .then((response) => {
         // Return cached version or fetch from network
         if (response) {
-          console.log('Service Worker: Serving from cache:', event.request.url);
+          //console.log('Service Worker: Serving from cache:', event.request.url);
           return response;
         }
 
-        console.log('Service Worker: Fetching from network:', event.request.url);
+        //console.log('Service Worker: Fetching from network:', event.request.url);
         return fetch(event.request)
           .then((response) => {
             // Check if valid response
@@ -87,7 +87,7 @@ self.addEventListener('fetch', (event) => {
 
 // Background sync for form submissions when offline
 self.addEventListener('sync', (event) => {
-  console.log('Service Worker: Background sync triggered');
+  //console.log('Service Worker: Background sync triggered');
   if (event.tag === 'contact-form-sync') {
     event.waitUntil(syncContactForm());
   }
@@ -113,7 +113,7 @@ async function syncContactForm() {
         if (response.ok) {
           // Remove from pending submissions
           await removePendingSubmission(submission.id);
-          console.log('Service Worker: Form submission synced successfully');
+          //console.log('Service Worker: Form submission synced successfully');
         }
       } catch (error) {
         console.log('Service Worker: Form sync failed, will retry:', error);
@@ -135,7 +135,7 @@ async function removePendingSubmission(id) {
 
 // Handle push notifications (for future expansion)
 self.addEventListener('push', (event) => {
-  console.log('Service Worker: Push notification received');
+  //console.log('Service Worker: Push notification received');
   
   const options = {
     body: event.data ? event.data.text() : 'New update available!',
@@ -167,7 +167,7 @@ self.addEventListener('push', (event) => {
 
 // Handle notification clicks
 self.addEventListener('notificationclick', (event) => {
-  console.log('Service Worker: Notification clicked');
+  //console.log('Service Worker: Notification clicked');
   event.notification.close();
 
   if (event.action === 'explore') {

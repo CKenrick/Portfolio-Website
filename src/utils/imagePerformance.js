@@ -81,7 +81,7 @@ class ImagePerformanceTracker {
 
   logPerformanceReport() {
     if (!this.isSupported) {
-      console.log('Performance tracking not supported');
+      //console.log('Performance tracking not supported');
       return;
     }
 
@@ -89,28 +89,28 @@ class ImagePerformanceTracker {
     const stats = this.getCompressionStats();
     
     console.group('🖼️ Image Performance Report');
-    console.log(`📊 Total Images: ${metrics.length}`);
+    //console.log(`📊 Total Images: ${metrics.length}`);
     
     if (stats) {
-      console.log(`💾 Total Transfer Size: ${(stats.totalTransferSize / 1024).toFixed(2)} KB`);
-      console.log(`📦 Total Decoded Size: ${(stats.totalDecodedSize / 1024).toFixed(2)} KB`);
-      console.log(`🎯 Average Compression: ${(stats.averageCompression * 100).toFixed(1)}%`);
-      console.log(`💰 Total Savings: ${(this.getTotalSavings() / 1024).toFixed(2)} KB`);
+      //console.log(`💾 Total Transfer Size: ${(stats.totalTransferSize / 1024).toFixed(2)} KB`);
+      //console.log(`📦 Total Decoded Size: ${(stats.totalDecodedSize / 1024).toFixed(2)} KB`);
+      //console.log(`🎯 Average Compression: ${(stats.averageCompression * 100).toFixed(1)}%`);
+      //console.log(`💰 Total Savings: ${(this.getTotalSavings() / 1024).toFixed(2)} KB`);
     }
     
     const slowest = this.getSlowestImages(3);
     if (slowest.length > 0) {
-      console.log('\n⏱️ Slowest Loading Images:');
+      //console.log('\n⏱️ Slowest Loading Images:');
       slowest.forEach((metric, index) => {
-        console.log(`${index + 1}. ${metric.name.split('/').pop()} - ${metric.duration.toFixed(2)}ms`);
+        //console.log(`${index + 1}. ${metric.name.split('/').pop()} - ${metric.duration.toFixed(2)}ms`);
       });
     }
     
     const largest = this.getLargestImages(3);
     if (largest.length > 0) {
-      console.log('\n📏 Largest Images:');
+      //console.log('\n📏 Largest Images:');
       largest.forEach((metric, index) => {
-        console.log(`${index + 1}. ${metric.name.split('/').pop()} - ${(metric.transferSize / 1024).toFixed(2)} KB`);
+        //console.log(`${index + 1}. ${metric.name.split('/').pop()} - ${(metric.transferSize / 1024).toFixed(2)} KB`);
       });
     }
     
@@ -124,7 +124,7 @@ export const imagePerformanceTracker = new ImagePerformanceTracker();
 // Utility functions
 export const logImageLoadTime = (src, startTime) => {
   const loadTime = performance.now() - startTime;
-  console.log(`📸 Image loaded: ${src.split('/').pop()} in ${loadTime.toFixed(2)}ms`);
+  //console.log(`📸 Image loaded: ${src.split('/').pop()} in ${loadTime.toFixed(2)}ms`);
 };
 
 export const measureImageLoad = (src, callback) => {

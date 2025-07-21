@@ -46,7 +46,7 @@ export const ContactProvider = ({ children }) => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // For now, just log the data
-      console.log('Form submitted:', data);
+      //console.log('Form submitted:', data);
       
       setSubmitStatus('success');
       resetForm();

@@ -11,7 +11,7 @@
 		"react-router-dom": "^6.26.0"
 	},
 	"scripts": {
-		"start": "vite",
+		"start": "eslint && vite",
 		"stop": "ps -ax | grep vite",
 		"build": "vite build",
 		"test": "vitest",
@@ -53,6 +53,9 @@
 		"@vitejs/plugin-react": "^4.6.0",
 		"@vitest/coverage-v8": "^3.2.4",
 		"autoprefixer": "^10.4.21",
+		"eslint": "^9.31.0",
+		"eslint-plugin-react": "^7.37.5",
+		"globals": "^16.3.0",
 		"jsdom": "^26.1.0",
 		"postcss": "^8.5.6",
 		"sass": "^1.69.0",

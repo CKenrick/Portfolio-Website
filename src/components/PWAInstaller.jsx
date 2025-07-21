@@ -25,7 +25,7 @@ const PWAInstaller = () => {
 
     // Listen for the beforeinstallprompt event
     const handleBeforeInstallPrompt = (e) => {
-      console.log('PWA: beforeinstallprompt event fired');
+      //console.log('PWA: beforeinstallprompt event fired');
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Save the event so it can be triggered later
@@ -38,7 +38,7 @@ const PWAInstaller = () => {
 
     // Listen for successful app installation
     const handleAppInstalled = () => {
-      console.log('PWA: App was installed successfully');
+      //console.log('PWA: App was installed successfully');
       setIsInstalled(true);
       setShowInstallPrompt(false);
       setDeferredPrompt(null);
@@ -52,7 +52,7 @@ const PWAInstaller = () => {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
           .then((registration) => {
-            console.log('PWA: Service Worker registered successfully:', registration.scope);
+            //console.log('PWA: Service Worker registered successfully:', registration.scope);
             
             // Check for updates
             registration.addEventListener('updatefound', () => {
@@ -83,12 +83,12 @@ const PWAInstaller = () => {
     try {
       // Show the install prompt
       const result = await deferredPrompt.prompt();
-      console.log('PWA: Install prompt result:', result.outcome);
+      //console.log('PWA: Install prompt result:', result.outcome);
       
       if (result.outcome === 'accepted') {
-        console.log('PWA: User accepted the install prompt');
+        //console.log('PWA: User accepted the install prompt');
       } else {
-        console.log('PWA: User dismissed the install prompt');
+        //console.log('PWA: User dismissed the install prompt');
       }
     } catch (error) {
       console.error('PWA: Install prompt error:', error);

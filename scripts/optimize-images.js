@@ -31,17 +31,17 @@ async function optimizeImage(inputPath, filename) {
   
   // Skip if not a raster image
   if (!['.jpg', '.jpeg', '.png', '.gif', '.webp'].includes(ext)) {
-    console.log(`Skipping ${filename} - not a raster image`);
+    //console.log(`Skipping ${filename} - not a raster image`);
     return;
   }
 
-  console.log(`Processing ${filename}...`);
+  //console.log(`Processing ${filename}...`);
 
   try {
     const image = sharp(inputPath);
     const metadata = await image.metadata();
     
-    console.log(`Original: ${metadata.width}x${metadata.height}, ${metadata.format}`);
+    //console.log(`Original: ${metadata.width}x${metadata.height}, ${metadata.format}`);
 
     // Generate different sizes
     for (const [sizeName, width] of Object.entries(SIZES)) {
@@ -72,7 +72,7 @@ async function optimizeImage(inputPath, filename) {
         .webp({ quality: QUALITY })
         .toFile(webpPath);
 
-      console.log(`  Generated ${sizeName}: ${actualWidth}px (JPEG & WebP)`);
+      //console.log(`  Generated ${sizeName}: ${actualWidth}px (JPEG & WebP)`);
     }
 
     // Generate a blur placeholder (very small, base64 encoded)
@@ -92,7 +92,7 @@ async function optimizeImage(inputPath, filename) {
     const placeholderJSPath = path.join(OUTPUT_DIR, `${name}-placeholder.js`);
     fs.writeFileSync(placeholderJSPath, `export default "${placeholderDataURL}";`);
     
-    console.log(`  Generated placeholder: 20px (JPEG & Data URL)`);
+    //console.log(`  Generated placeholder: 20px (JPEG & Data URL)`);
     
   } catch (error) {
     console.error(`Error processing ${filename}:`, error);
@@ -100,7 +100,7 @@ async function optimizeImage(inputPath, filename) {
 }
 
 async function processDirectory() {
-  console.log('Starting image optimization...\n');
+  //console.log('Starting image optimization...\n');
   
   const files = fs.readdirSync(INPUT_DIR);
   
@@ -110,11 +110,11 @@ async function processDirectory() {
     
     if (stats.isFile()) {
       await optimizeImage(filePath, file);
-      console.log(''); // Empty line for readability
+      //console.log(''); // Empty line for readability
     }
   }
   
-  console.log('Image optimization complete!');
+  //console.log('Image optimization complete!');
   
   // Generate index file for easier imports
   generateIndexFile();
@@ -163,7 +163,7 @@ function generateIndexFile() {
   });
   
   fs.writeFileSync(path.join(OUTPUT_DIR, 'index.js'), indexContent);
-  console.log('Generated index.js for optimized images');
+  //console.log('Generated index.js for optimized images');
 }
 
 // Run the optimization

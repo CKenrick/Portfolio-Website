@@ -10,6 +10,19 @@ import StaggeredList from './animations/StaggeredList.jsx';
 // Static projects (moved outside component to prevent recreation)
 const STATIC_PROJECTS = [
   {
+    id: 'renaissance-website',
+    title: 'eduCLIMBER',
+    description: 'eduCLIMBER integrates all whole child data into a single platform and provides interactive data visualizations and built-in tools for essential MTSS practices. From individual insights to district-level patterns, eduCLIMBER makes equitable support for each student and continuous improvement for each school a reality.',
+    technologies: ['Vue.js', 'PHP', 'MySQL', 'JavaScript', 'SCSS'],
+    links: [
+      {
+        label: 'eduCLIMBER',
+        url: 'https://www.renaissance.com/products/actionable-insights/educlimber/',
+        icon: <FaExternalLinkAlt className="w-4 h-4" />
+      }
+    ]
+  },
+  {
     id: 'portfolio-website',
     title: 'ChristopherKenrick.com',
     description: 'A modern, responsive portfolio website showcasing my work and skills as a Frontend Software Engineer. Built with React 19, Vite, and Tailwind CSS 4 with dark mode support.',
@@ -50,27 +63,27 @@ const Projects = () => {
   const [githubStats, setGithubStats] = useState(null);
 
   // Debug logging
-  console.log('Projects component rendered, loading:', loading, 'projects:', projects.length);
+  //console.log('Projects component rendered, loading:', loading, 'projects:', projects.length);
 
   useEffect(() => {
-    console.log('useEffect running - will fetch GitHub data');
+    //console.log('useEffect running - will fetch GitHub data');
     
     const fetchGitHubData = async () => {
       try {
-        console.log('Starting GitHub data fetch...');
+        //console.log('Starting GitHub data fetch...');
         setLoading(true);
         setError(null);
         
-        console.log('Fetching repositories...');
+        //console.log('Fetching repositories...');
         const repos = await githubApi.getFeaturedRepositories();
-        console.log('Repositories fetched:', repos.length);
+        //console.log('Repositories fetched:', repos.length);
 
-        console.log('Fetching profile...');
+        //console.log('Fetching profile...');
         const profile = await githubApi.getProfile().catch((err) => {
           console.warn('Profile fetch failed:', err);
           return null;
         });
-        console.log('Profile fetched:', !!profile);
+        //console.log('Profile fetched:', !!profile);
 
         // Set GitHub stats
         if (profile) {
@@ -79,7 +92,7 @@ const Projects = () => {
 
         // Combine GitHub repos with static projects
         const allProjects = [...repos, ...STATIC_PROJECTS];
-        console.log('All projects combined:', allProjects.length);
+        //console.log('All projects combined:', allProjects.length);
         
         // Sort projects by date
         const sortedProjects = allProjects.sort((a, b) => {
@@ -88,17 +101,17 @@ const Projects = () => {
           return aValue < bValue ? 1 : -1;
         });
         
-        console.log('Setting projects...');
+        //console.log('Setting projects...');
         setProjects(allProjects);
         setFilteredProjects(sortedProjects);
-        console.log('Projects set successfully');
+        //console.log('Projects set successfully');
         
       } catch (err) {
         console.error('Error fetching GitHub data:', err);
         setError(err);
         // Keep static projects on error
       } finally {
-        console.log('GitHub fetch complete, setting loading to false');
+        //console.log('GitHub fetch complete, setting loading to false');
         setLoading(false);
       }
     };
@@ -112,15 +125,15 @@ const Projects = () => {
   }, []);
 
   const refetch = useCallback(() => {
-    console.log('Refetch requested');
+    //console.log('Refetch requested');
     setError(null);
     setLoading(true);
     
     const fetchGitHubData = async () => {
       try {
-        console.log('Re-fetching repositories...');
+        //console.log('Re-fetching repositories...');
         const repos = await githubApi.getFeaturedRepositories();
-        console.log('Repositories re-fetched:', repos.length);
+        //console.log('Repositories re-fetched:', repos.length);
 
         const profile = await githubApi.getProfile().catch((err) => {
           console.warn('Profile re-fetch failed:', err);
@@ -152,7 +165,7 @@ const Projects = () => {
     fetchGitHubData();
   }, []);
 
-  console.log('Rendering Projects component - loading:', loading, 'projects:', projects.length);
+  //console.log('Rendering Projects component - loading:', loading, 'projects:', projects.length);
 
   return (
     <section className="py-12 px-4 md:px-8 max-w-6xl mx-auto">

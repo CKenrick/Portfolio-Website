@@ -105,14 +105,14 @@ const writeSitemap = () => {
   try {
     const sitemapContent = generateSitemap();
     fs.writeFileSync(config.outputPath, sitemapContent, 'utf8');
-    console.log(`✅ Sitemap generated successfully at: ${config.outputPath}`);
+    //console.log(`✅ Sitemap generated successfully at: ${config.outputPath}`);
     
     // Validate the generated XML
     const stats = fs.statSync(config.outputPath);
-    console.log(`📊 Sitemap size: ${stats.size} bytes`);
-    console.log(`📝 Pages included: ${siteStructure.length}`);
-    console.log(`🔗 Base URL: ${config.baseUrl}`);
-    console.log(`⏰ Last modified: ${config.lastModified}`);
+    //console.log(`📊 Sitemap size: ${stats.size} bytes`);
+    //console.log(`📝 Pages included: ${siteStructure.length}`);
+    //console.log(`🔗 Base URL: ${config.baseUrl}`);
+    //console.log(`⏰ Last modified: ${config.lastModified}`);
     
   } catch (error) {
     console.error('❌ Error generating sitemap:', error);
@@ -177,21 +177,21 @@ User-agent: MJ12bot
 Disallow: /`;
 
     fs.writeFileSync(robotsPath, robotsContent, 'utf8');
-    console.log(`✅ Robots.txt generated successfully at: ${robotsPath}`);
+    //console.log(`✅ Robots.txt generated successfully at: ${robotsPath}`);
   } else {
-    console.log(`ℹ️  Robots.txt already exists at: ${robotsPath}`);
+    //console.log(`ℹ️  Robots.txt already exists at: ${robotsPath}`);
   }
 };
 
 // Main execution
 const main = () => {
-  console.log('🚀 Starting sitemap generation...');
+  //console.log('🚀 Starting sitemap generation...');
   
   // Ensure public directory exists
   const publicDir = path.join(__dirname, '../public');
   if (!fs.existsSync(publicDir)) {
     fs.mkdirSync(publicDir, { recursive: true });
-    console.log(`📁 Created public directory: ${publicDir}`);
+    //console.log(`📁 Created public directory: ${publicDir}`);
   }
   
   // Generate sitemap
@@ -200,7 +200,7 @@ const main = () => {
   // Generate robots.txt if needed
   generateRobotsTxt();
   
-  console.log('✨ SEO files generation completed!');
+  //console.log('✨ SEO files generation completed!');
 };
 
 // Run the script

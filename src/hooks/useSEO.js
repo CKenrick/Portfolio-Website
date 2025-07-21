@@ -25,7 +25,7 @@ export const useSEO = (section = 'home', customSEO = {}, options = {}) => {
     try {
       updatePageSEO(newSection || section, newCustomSEO || memoizedCustomSEO);
       if (process.env.NODE_ENV === 'development') {
-        console.log(`SEO updated for section: ${newSection || section}`);
+        //console.log(`SEO updated for section: ${newSection || section}`);
       }
     } catch (error) {
       console.error('Error updating SEO:', error);
@@ -74,7 +74,7 @@ export const useSEOOnScroll = (sections = [], options = {}) => {
     try {
       updatePageSEO(sectionId, customSEO);
       if (process.env.NODE_ENV === 'development') {
-        console.log(`SEO updated for section: ${sectionId}`);
+        //console.log(`SEO updated for section: ${sectionId}`);
       }
     } catch (error) {
       console.error('Error updating SEO:', error);
@@ -206,7 +206,7 @@ export const useDynamicSEO = () => {
     try {
       updatePageSEO(sectionId, customSEO);
       if (process.env.NODE_ENV === 'development') {
-        console.log(`SEO updated for section: ${sectionId}`);
+        //console.log(`SEO updated for section: ${sectionId}`);
       }
     } catch (error) {
       console.error('Error updating SEO:', error);

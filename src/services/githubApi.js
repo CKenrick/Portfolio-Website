@@ -85,12 +85,12 @@ export const githubApi = {
   // Get featured repositories (manually curated list)
   async getFeaturedRepositories() {
     try {
-      console.log('Fetching all repositories...');
+      //console.log('Fetching all repositories...');
       const allRepos = await this.getRepositories({ per_page: 100 });
-      console.log('All repositories fetched:', allRepos.length);
+      //console.log('All repositories fetched:', allRepos.length);
       
       if (!allRepos || allRepos.length === 0) {
-        console.log('No repositories found, returning empty array');
+        //console.log('No repositories found, returning empty array');
         return [];
       }
       
@@ -101,19 +101,19 @@ export const githubApi = {
         const isPublic = !repo.private;
         const isNotArchived = !repo.archived;
         
-        console.log(`Repo ${repo.name}: fork=${repo.fork}, desc=${!!repo.description}, public=${!repo.private}, archived=${repo.archived}`);
+        //console.log(`Repo ${repo.name}: fork=${repo.fork}, desc=${!!repo.description}, public=${!repo.private}, archived=${repo.archived}`);
         
         return isNotFork && hasDescription && isPublic && isNotArchived;
       });
 
-      console.log('Featured repositories after filtering:', featured.length);
+      //console.log('Featured repositories after filtering:', featured.length);
       
       // Sort by updated date and take top 6
       const sortedFeatured = featured.sort((a, b) => 
         new Date(b.updated_at) - new Date(a.updated_at)
       ).slice(0, 6);
 
-      console.log('Final featured repositories:', sortedFeatured.map(r => r.name));
+      //console.log('Final featured repositories:', sortedFeatured.map(r => r.name));
       return sortedFeatured;
       
     } catch (error) {

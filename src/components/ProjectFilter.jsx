@@ -55,7 +55,7 @@ const ProjectFilter = ({
   const getFilteredProjects = useCallback(() => {
     if (!projects || !Array.isArray(projects)) return [];
 
-    console.log('Filtering projects with:', { searchTerm, selectedTechnologies, sortBy, sortDirection });
+    //console.log('Filtering projects with:', { searchTerm, selectedTechnologies, sortBy, sortDirection });
 
     const filtered = projects.filter(project => {
       // Search filter
@@ -77,7 +77,7 @@ const ProjectFilter = ({
       return matchesSearch && matchesTech;
     });
 
-    console.log('Filtered projects:', filtered.length, 'from', projects.length);
+    //console.log('Filtered projects:', filtered.length, 'from', projects.length);
 
     // Sort filtered projects
     return filtered.sort((a, b) => {
@@ -111,7 +111,7 @@ const ProjectFilter = ({
   useEffect(() => {
     if (!isMountedRef.current || !projects || !Array.isArray(projects)) return;
     
-    console.log('Filter state changed, triggering filtering...');
+    //console.log('Filter state changed, triggering filtering...');
     const filteredProjects = getFilteredProjects();
     onFilterChange(filteredProjects);
   }, [searchTerm, selectedTechnologies, sortBy, sortDirection, projects, getFilteredProjects, onFilterChange]);

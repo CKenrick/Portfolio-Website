@@ -393,7 +393,7 @@ export class SEOMonitor {
 export const initSEOMonitor = () => {
   if (process.env.NODE_ENV === 'development') {
     window.seoMonitor = new SEOMonitor();
-    console.log('SEO Monitor initialized. Use window.seoMonitor.getReport() for analysis.');
+    //console.log('SEO Monitor initialized. Use window.seoMonitor.getReport() for analysis.');
   }
 };
 

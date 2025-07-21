@@ -96,7 +96,7 @@ const ContactForm = ({ className = "" }) => {
         EMAILJS_CONFIG.publicKey
       );
 
-      console.log('Email sent successfully:', result);
+      //console.log('Email sent successfully:', result);
       return result;
     } catch (error) {
       console.error('EmailJS error:', error);
@@ -120,7 +120,7 @@ const ContactForm = ({ className = "" }) => {
       }
 
       const result = await response.json();
-      console.log('Backend submission successful:', result);
+      //console.log('Backend submission successful:', result);
       return result;
     } catch (error) {
       console.error('Backend submission error:', error);
