@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Import highlight.js theme for syntax highlighting */
+@import 'highlight.js/styles/github.css';
+
+:root {
+  --background: #F8F9FA;
+  --foreground: #333333;
+  --primary-light: #06D6A0;
+  --primary-dark: #04B082;
+}
+
+/* Custom colors and fonts are handled by Tailwind config */
+
+/* Dark mode is now controlled by class, not media query */
+.dark {
+  --background: #1A1A1A;
+  --foreground: #E2E2E2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Prose styling is handled by Tailwind Typography plugin */

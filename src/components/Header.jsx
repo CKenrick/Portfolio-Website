@@ -71,6 +71,12 @@ const Header = () => {
               >
                 Resume
               </Link>
+              <a
+                href="/blog"
+                className="text-primary-light dark:text-primary-dark hover:text-primary-dark dark:hover:text-primary-light transition-all duration-200 px-3 py-2 font-medium hover:scale-105 transform"
+              >
+                Blog
+              </a>
               <button
                 onClick={(e) => handleSectionClick('connect', e)}
                 className="text-primary-light dark:text-primary-dark hover:text-primary-dark dark:hover:text-primary-light transition-all duration-200 px-3 py-2 font-medium hover:scale-105 transform"
@@ -138,6 +144,13 @@ const Header = () => {
             >
               Resume
             </Link>
+            <a
+              href="/blog"
+              onClick={closeMenu}
+              className="text-primary-light dark:text-primary-dark hover:text-primary-dark dark:hover:text-primary-light block px-3 py-2 text-base font-medium transition-colors duration-200"
+            >
+              Blog
+            </a>
             <button
               onClick={(e) => handleSectionClick('connect', e)}
               className="text-primary-light dark:text-primary-dark hover:text-primary-dark dark:hover:text-primary-light block px-3 py-2 text-base font-medium transition-colors duration-200 w-full text-left"

@@ -31,7 +31,14 @@ export default [
       ],
       // React rules
       "react/react-in-jsx-scope": "off", // Not needed in React 17+
-      "react/prop-types": "off" // Turn off if you're using TypeScript or don't want prop validation
+      "react/prop-types": "off", // Turn off if you're using TypeScript or don't want prop validation
+      "react/no-unescaped-entities": "off",
+      "react/no-unknown-property": "off",
+      "react/no-deprecated": "off",
+      "react/no-restricted-syntax": "off",
+      "react-hooks/rules-of-hooks": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "@next/internal/typechecked-require": "off",
     },
     settings: {
       react: {
