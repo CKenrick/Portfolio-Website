@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from '../context/ThemeContext';
 import { ContactProvider } from '../context/ContactContext';
 import Header from './Header';
-import Main from './Main';
 import Footer from './Footer';
 import ScrollProgressBar from './animations/ScrollProgressBar';
 import BackToTop from './animations/BackToTop';
@@ -106,7 +106,7 @@ const App = () => {
           {/* Main content */}
           <div className="relative z-10">
             <Header />
-            <Main />
+            <Outlet />
             <Footer />
           </div>
           

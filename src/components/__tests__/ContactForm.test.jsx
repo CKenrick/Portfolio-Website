@@ -139,7 +139,7 @@ describe('ContactForm Component', () => {
 
   it('shows loading state during submission', async () => {
     const user = userEvent.setup();
-    emailjs.send.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 1000)));
+    emailjs.send.mockImplementation(function() { new Promise(resolve => setTimeout(resolve, 1000))});
     
     renderWithProviders(<ContactForm />);
     
@@ -247,7 +247,7 @@ describe('ContactForm Component', () => {
 
   it('prevents multiple submissions', async () => {
     const user = userEvent.setup();
-    emailjs.send.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 1000)));
+    emailjs.send.mockImplementation(function() { new Promise(resolve => setTimeout(resolve, 1000))});
     
     renderWithProviders(<ContactForm />);
     

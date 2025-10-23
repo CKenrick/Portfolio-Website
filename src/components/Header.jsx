@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle.jsx';
 import LazyImage from './LazyImage.jsx';
 import { useSmoothScroll } from '../hooks/useScrollAnimation.js';
@@ -7,6 +7,7 @@ import { useSmoothScroll } from '../hooks/useScrollAnimation.js';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { scrollToSection } = useSmoothScroll();
 
   const toggle = () => {
@@ -23,7 +24,10 @@ const Header = () => {
     
     // If we're not on the home page, navigate first
     if (location.pathname !== '/') {
-      window.location.href = `/#${sectionId}`;
+      navigate('/');
+      setTimeout(() => {
+        scrollToSection(sectionId, 80);
+      }, 100);
     } else {
       scrollToSection(sectionId, 80); // 80px offset for fixed header
     }

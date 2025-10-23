@@ -6,8 +6,8 @@
     src: url(./fonts/MavenPro/MavenProLight-300.otf);
 }
 
-/* CSS custom properties for our colors */
-:root {
+/* Dark mode support */
+@theme {
   --color-primary-light: #06D6A0;
   --color-primary-dark: #04B082;
   --color-secondary-light: #FFD166;
@@ -15,6 +15,8 @@
   --color-accent-light: #EF476F;
   --color-accent-dark: #D73F63;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Custom utility classes */
 .text-primary-light {
