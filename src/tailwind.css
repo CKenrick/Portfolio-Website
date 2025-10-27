@@ -1,10 +1,5 @@
 @import "tailwindcss";
-
-/* Custom font face */
-@font-face {
-    font-family: MavenPro;
-    src: url(./fonts/MavenPro/MavenProLight-300.otf);
-}
+@import "@fontsource/maven-pro";
 
 /* Dark mode support */
 @theme {
@@ -14,6 +9,9 @@
   --color-secondary-dark: #E6BC5A;
   --color-accent-light: #EF476F;
   --color-accent-dark: #D73F63;
+
+  --font-weight-extrablack: 1000;
+  --font-maven: "Maven Pro", sans-serif;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -113,7 +111,7 @@
 
 /* Custom base styles */
 body {
-  font-family: MavenPro, sans-serif;
+  font-family: var(--font-maven);
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }

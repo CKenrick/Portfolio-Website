@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import { FaLinkedinIn, FaGithub, FaBehance } from 'react-icons/fa';
 import AnimatedSection from './animations/AnimatedSection.jsx';
 import StaggeredList from './animations/StaggeredList.jsx';
 
@@ -15,9 +15,10 @@ const Resume = () => (
               delay={200}
               className="lg:col-span-2 p-6 lg:p-8 bg-white lg:rounded-l-lg"
             >
-              <div className="text-center border-b-4 border-gray-200 pb-6 mb-6">
-                <h1 className="text-4xl font-bold text-yellow-400 mb-2">Chris Kenrick</h1>
-                <h2 className="text-xl text-gray-600 mb-4">Software Developer</h2>
+              <div className="text-center border-b-4 border-gray-200 pb-6 mb-2">
+                <h1 className="text-4xl font-bold text-yellow-400 mb-2">Christopher Kenrick</h1>
+                <h2 className="text-lg text-gray-600 mb-2">Atlanta, Georgia</h2>
+                <h2 className="text-xl text-gray-600 mb-4">Frontend Engineer | UX-Focused Developer | Data Visualization and Design Systems</h2>
                 <div className="flex justify-center space-x-6">
                   <a 
                     href="https://www.linkedin.com/in/christopherkenrick/" 
@@ -27,6 +28,7 @@ const Resume = () => (
                   >
                     <FaLinkedinIn className="text-2xl" />
                   </a>
+
                   <a 
                     href="https://github.com/CKenrick" 
                     target="_blank" 
@@ -35,20 +37,27 @@ const Resume = () => (
                   >
                     <FaGithub className="text-2xl" />
                   </a>
+
+                  <a 
+                    href="https://behance.net/ChristopherKenrick" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-gray-800 transition-all duration-200 transform hover:scale-110"
+                  >
+                    <FaBehance className="text-2xl" />
+                  </a>
                 </div>
               </div>
-              <div className="pb-4 mb-4">
-                <h3 className="text-2xl font-bold text-yellow-400 text-center mb-6">About</h3>
+              <div className="py-4 mb-4">
+                <h3 className="text-2xl font-bold text-yellow-400 text-center mb-2">PROFESSIONAL SUMMARY</h3>
                 <div className="pb-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">  
-                  <p className="text-sm text-gray-600">
-                    Experienced Frontend Software Engineer and
-                    certified Scrum Master, with a demonstrated
-                    history of working in the education,
-                    environmental finance, & nonprofit industries.
-                    Proficient in multiple programming languages,
-                    frameworks, and libraries, with a current focus
-                    on VueJS, Vite, Pinia, and Vuetify. Always eager
-                    to learn new languages.
+                  <p className="text-md leading-6 font-semibold italic text-gray-600">
+                  Frontend engineer with more than 10 years of experience building human-centered interfaces that make complex
+                  data clear and usable. Skilled at modernizing legacy systems into scalable React and Vue applications, creating
+                  design systems, and leading cross-functional Agile teams. Recognized for fostering strong team culture, clear
+                  communication, and collaborative problem-solving while delivering measurable results such as higher customer
+                  retention, faster release cycles, and stronger product adoption. Seeking to contribute to mission-driven
+                  organizations where design and engineering meet impact.
                   </p>
                 </div>
               </div>
@@ -56,7 +65,7 @@ const Resume = () => (
               
               {/* Employment Section */}
               <div className="border-t-4 border-gray-200 pt-6">
-                <h3 className="text-2xl font-bold text-yellow-400 text-center mb-6">Employment</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">PROFESSIONAL EXPERIENCE</h3>
                 
                 <StaggeredList 
                   className="space-y-6"
@@ -65,51 +74,175 @@ const Resume = () => (
                   duration={600}
                 >
                   <div className="border-b border-gray-200 pb-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-semibold text-gray-700">Renaissance Learning - eduCLIMBER</h4>
-                      <span className="text-sm text-gray-500">2018 - 2025</span>
+                    <div className="flex justify-between items-start">
+                      <p className="text-lg font-semibold text-gray-700 leading-6">Renaissance Learning (via acquisitions of eduCLIMBER and Illuminate Education)</p>
+                      <p className="text-md text-gray-500 text-right whitespace-nowrap">Remote</p>
                     </div>
-                    <h5 className="text-base font-medium text-gray-600 mb-3">Frontend Software Engineer & Scrum Master</h5>
+                    <p className="text-md leading-6 font-semibold italic text-gray-700 mb-2">Global leader in K-12 assessment and analytics software</p>
+                    <div className="flex justify-between items-start mb-2">
+                      <p className="text-md font-bold text-gray-600 mb-2">Software Engineer II & Scrum Master</p>
+                      <p className="text-md text-gray-500">August 2022 - June 2025</p>
+                    </div>
                     <ul className="text-sm text-gray-600 space-y-1">
-                      <li>• Implemented new SPA with VueJS, Vite, Pinia, and Vuetify</li>
-                      <li>• Major contributor to internal component library</li>
-                      <li>• Lead the transfer of legacy pages from extJS to VueJS</li>
-                      <li>• Owned product backlog and lead team using Agile project management as Scrum Master</li>
-                      <li>• Lead releases of frontend Github repositories using Github Actions and Rundeck</li>
+                      <li>• Modernized core application by migrating from ExtJS to Vue.js, Vite, and Pinia, cutting load times and
+                      improving scalability.</li>
+                      <li>• Increased customer retention from 87% to 94% by aligning feature delivery with client needs and
+                      collaborating across 10+ large-scale projects.</li>
+                      <li>• Automated CI/CD pipelines with GitHub Actions and Rundeck, reducing release times by 30% and fostering
+                      a culture of efficiency and continuous improvement.</li>
+                      <li>• Led an international team of 25 engineers, designers, and product managers as Scrum Master, enhancing
+                      delivery predictability, communication, and mentoring junior developers through approachable leadership.</li>
+                      <li>• Partnered with data engineers to integrate pipelines and visualizations, making student performance insights
+                      more actionable for educators and strengthening collaboration between technical and non-technical teams.</li>
+                    </ul>
+                  </div>
+
+                  <div className="border-b border-gray-200 pb-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">
+                    <div className="flex justify-between items-start">
+                      <p className="text-lg font-semibold text-gray-700 leading-6">Longleaf Solutions → IO Education → Illuminate Education → Renaissance Learning</p>
+                      <p className="text-md text-gray-500 text-right whitespace-nowrap">Atlanta, Georgia</p>
+                    </div>
+                    <p className="text-md leading-6 font-semibold italic text-gray-700 mb-2">Remained through four acquisitions, providing continuity and technical leadership across evolving organizations.</p>
+                    <div className="flex justify-between items-start mb-2">
+                      <p className="text-md font-bold text-gray-600 mb-2">Frontend Software Engineer</p>
+                      <p className="text-md text-gray-500">September 2015 - August 2022</p>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Rebuilt flagship product frontend from Ember.js to React and TypeScript, reducing maintenance overhead
+                      and improving user experience.</li>
+                      <li>• Launched centralized dashboard unifying five product lines into one experience post-merger, streamlining
+                      workflows and strengthening adoption for thousands of educators.</li>
+                      <li>• Defined coding standards and onboarding practices that shortened ramp-up time for new engineers and
+                      fostered a culture of consistency and quality.</li>
+                      <li>• Partnered with product managers, designers, and data engineers to deliver cross-functional features,
+                      improving collaboration and ensuring seamless data flow across platforms.</li>
+                      <li>• Supported smooth client transitions during acquisitions by combining technical execution with empathy and
+                      clear communication, safeguarding renewal rates and customer trust.</li>
                     </ul>
                   </div>
                   
                   <div className="border-b border-gray-200 pb-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-semibold text-gray-700">IO Education/Illuminate Education</h4>
-                      <span className="text-sm text-gray-500">2014 - 2018</span>
+                    <div className="flex justify-between items-start">
+                      <p className="text-lg font-semibold text-gray-700 leading-6">Longleaf Solutions → IO Education → Illuminate Education → Renaissance Learning</p>
+                      <p className="text-md text-gray-500 text-right whitespace-nowrap">Atlanta, Georgia</p>
                     </div>
-                    <h5 className="text-base font-medium text-gray-600 mb-3">Frontend Software Engineer</h5>
+                    <div className="flex justify-between items-start mb-2">
+                      <p className="text-md font-bold text-gray-600 mb-2">Web UX Designer and Developer</p>
+                      <p className="text-md text-gray-500">July 2014 - September 2015</p>
+                    </div>
                     <ul className="text-sm text-gray-600 space-y-1">
-                      <li>• Implemented product functionality using knowledge of backend data warehouse data structures</li>
-                      <li>• Converted outdated frontend code of flagship product to the ReactJS library</li>
-                      <li>• Lead frontend development of central dashboard for five separate company products</li>
-                      <li>• Maintained legacy codebase and implemented new features as the sole developer</li>
-                      <li>• Created new sql queries to support new features and to improve performance</li>
+                      <li>• Designed and implemented cross-browser interfaces for K-12 SaaS products, ensuring compatibility across
+                      Chrome, Firefox, and Internet Explorer.</li>
+                      <li>• Redesigned marketing website and improved UI consistency, contributing to stronger engagement and a more
+                      cohesive brand experience.</li>
+                      <li>• Collaborated with sales and support teams to align product demos and onboarding with client needs, building
+                      stronger relationships with educators and administrators.</li>
                     </ul>
                   </div>
                   
                   <div className="pb-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-semibold text-gray-700">The Environmental Finance Center, UNC-CH</h4>
-                      <span className="text-sm text-gray-500">2012 - 2014</span>
+                    <div className="flex justify-between items-start">
+                      <p className="text-lg font-semibold text-gray-700 leading-6">Environmental Finance Center, UNC-Chapel Hill</p>
+                      <p className="text-md text-gray-500 text-right whitespace-nowrap">Chapel Hill, North Carolina</p>
                     </div>
-                    <h5 className="text-base font-medium text-gray-600 mb-3">Research Assistant</h5>
+                    <div className="flex justify-between items-start mb-2">
+                      <p className="text-md font-bold text-gray-600 mb-2">Graduate Fellow</p>
+                      <p className="text-md text-gray-500">August 2012 - May 2014</p>
+                    </div>
                     <ul className="text-sm text-gray-600 space-y-1">
-                      <li>• Implemented design and development of new information visualization tools</li>
-                      <li>• Experimented with new dashboard interface through multiple programming languages</li>
-                      <li>• Assisted with organizational transition to database centered system</li>
-                      <li>• Created multiple utility rates dashboards</li>
-                      <li>• Updated financial analysis tools available for public use</li>
-                      <li>• Conducted research for Nationwide Small Systems Energy Audit Project</li>
+                      <li>• Created interactive dashboards, including the Colorado Water Rates Dashboard, to visualize utility trends for
+                      policymakers.</li>
+                      <li>• Standardized data management processes to improve research accuracy and accessibility.</li>
+                      <li>• Published research on information affordability and the digital divide, contributing to national policy
+                      discussions.</li>
                     </ul>
                   </div>
                 </StaggeredList>
+              </div>
+
+              <div className="border-t-4 border-gray-200 pt-6">
+                <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">EARLIER AND ADDITIONAL CAREER EXPERIENCE</h3>
+                
+                <StaggeredList 
+                  className="space-y-6"
+                  animation="fadeInUp"
+                  staggerDelay={200}
+                  duration={600}
+                >
+                  <div className="b-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">
+                    <div className="pb-8">
+                      <div className="flex justify-between items-start">
+                        <p className="text-lg font-semibold text-gray-700 leading-6">FRIDA Inc. (nonprofit)</p>
+                        <p className="text-md text-gray-500 text-right whitespace-nowrap">Remote</p>
+                      </div>
+                      <div className="flex justify-between items-start mb-2">
+                        <p className="text-md font-bold text-gray-600 mb-2">Community Outreach Director</p>
+                        <p className="text-md text-gray-500">May 2010 - August 2012</p>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Recruited and trained more than 50 volunteers and interns to deliver sustainability and education programs.</li>
+                        <li>• Built partnerships with schools and community organizations to expand reach.</li>
+                        <li>• Coordinated fundraising events that boosted awareness and donor contributions.</li>
+                      </ul>
+                    </div>
+
+                    <div className="pb-8">
+                      <div className="flex justify-between items-start mb-2">
+                        <p className="text-md font-bold text-gray-600 mb-2">Lead Web Developer</p>
+                        <p className="text-md text-gray-500">May 2014 - August 2017</p>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Built and maintained organizational website, integrated content management tools to simplify updates for
+                        non-technical staff, and designed digital campaigns that expanded fundraising reach.</li>
+                        <li>• Provided technical training to staff and volunteers and supported the mission continuously while pursuing
+                        graduate studies and professional engineering roles.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </StaggeredList>
+              </div>
+
+              <div className="border-t-4 border-gray-200 pt-6">
+                <div className="pb-4 mb-4">
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-2">CORE STRENGTHS</h3>
+                  <div className="pb-4 hover:bg-gray-50 p-4 rounded-lg transition-colors duration-200">  
+                    <p className="text-md text-gray-600 font-semibold italic text-center">
+                      Collaboration • Mentorship • Empathy in Teamwork • Agile Leadership • UX Advocacy • Adaptability • Communication
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t-4 border-gray-200 pt-6">
+                <div className="pb-4 mb-4">
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-2">SELECTED PROJECTS AND PORTFOLIO HIGHLIGHTS</h3>
+                  <div className="hover:bg-gray-50 px-4 pt-4 rounded-lg transition-colors duration-200 ">  
+                    <p className="text-md text-gray-600 font-semibold italic">
+                      Design Systems and Component Libraries
+                    </p>
+                    <p className="text-md text-gray-600">
+                      Built Vue component library standardizing UI across edtech platforms.
+                    </p>
+                  </div>
+
+                  <div className=" hover:bg-gray-50 px-4 rounded-lg transition-colors duration-200">  
+                    <p className="text-md text-gray-600 font-semibold italic">
+                      Visual Design
+                    </p>
+                    <p className="text-md text-gray-600">
+                      Created logos and t-shirt designs for community organizations and side projects.
+                    </p>
+                  </div>
+
+                  <div className="hover:bg-gray-50 px-4 rounded-lg transition-colors duration-200">  
+                    <p className="text-md text-gray-600 font-semibold italic">
+                      Research and Writing
+                    </p>
+                    <p className="text-md text-gray-600">
+                      Published on digital affordability and government dashboards.
+                    </p>
+                  </div>
+                </div>
               </div>
             </AnimatedSection>
             
@@ -140,52 +273,76 @@ const Resume = () => (
                     </div>
                   </div>
                 </div>
-                
-                {/* Skills */}
+
+                {/* Languages */}
                 <div className="border-b border-white pb-6">
-                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Skills</h3>
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Languages</h3>
                   <div className="grid grid-cols-2 gap-1 text-sm text-gray-200">
-                    <div className="hover:text-yellow-400 transition-colors duration-200">HTML/5</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">SASS/SCSS/CSS</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Javascript/ECMAScript</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Javascript (ES6+)</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">Typescript</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Vite</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Pinia</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Vuetify</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">React</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Vue.js</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Node.js</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">npm/pnpm/npx</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Express</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Lodash</div>                    
-                    <div className="hover:text-yellow-400 transition-colors duration-200">jQuery</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Git</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Webpack</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Yarn</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Tailwind CSS</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">HTML5</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">CSS3/Sass/SCSS</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">SQL</div>
                   </div>
                 </div>
                 
-                {/* Programs/Tools */}
-                <div>
-                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Programs/Tools</h3>
+                {/* Frameworks and Libraries */}
+                <div className="border-b border-white pb-6">
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Frameworks and Libraries</h3>
                   <div className="grid grid-cols-2 gap-1 text-sm text-gray-200">
+                    <div className="hover:text-yellow-400 transition-colors duration-200">React</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Vue.js</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Next.js</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Vite</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Pinia</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Redux</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Vuetify</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Tailwind CSS</div>
+                  </div>
+                </div>
+
+                {/* Tools and Platforms */}
+                <div className="border-b border-white pb-6">
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Tools and Platforms</h3>
+                  <div className="grid grid-cols-2 gap-1 text-sm text-gray-200">
+                    <div className="hover:text-yellow-400 transition-colors duration-200">GitHub Actions</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Docker</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Rundeck</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Figma</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">JIRA</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Storybook</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">CI/CD pipelines</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">LaunchDarkly</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Datadog</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">Cursor</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">Visual Studio Code</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">GitHub Desktop</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">Gemini/Claude/GPT</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Jira</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Rundeck</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Github Actions</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Docker</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Figma</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Miro</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">Affinity Suite</div>
                     <div className="hover:text-yellow-400 transition-colors duration-200">Adobe Creative Suite</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Tableau</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">WordPress</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">Drupal</div>
-                    <div className="hover:text-yellow-400 transition-colors duration-200">SPSS</div>
+                  </div>
+                </div>
+                
+                {/* Practices */}
+                <div className="border-b border-white pb-6">
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Practices</h3>
+                  <div className="grid grid-cols-2 gap-1 text-sm text-gray-200">
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Agile/Scrum</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">UX/UI Design</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Data Visualization</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Design Systems</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Performance Optimization</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Accessibility (WCAG/ARIA)</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Testing (Cypress, Jest, Playwright)</div>
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Documentation (Confluence, Storybook, README)</div>
+                  </div>
+                </div>
+
+                {/* Certifications */}
+                <div>
+                  <h3 className="text-2xl font-bold text-yellow-400 text-center mb-4">Certifications</h3>
+                  <div className="grid grid-cols-2 gap-1 text-sm text-gray-200">
+                    <div className="hover:text-yellow-400 transition-colors duration-200">Certified ScrumMaster (CSM)</div>
                   </div>
                 </div>
               </StaggeredList>
