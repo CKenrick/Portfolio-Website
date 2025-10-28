@@ -14,10 +14,10 @@ const DebugInfo = () => {
   useEffect(() => {
     // Check if Tailwind is loaded
     const testElement = document.createElement('div');
-    testElement.className = 'bg-emerald-500';
+    testElement.className = 'bg-primary-dark';
     document.body.appendChild(testElement);
     const styles = window.getComputedStyle(testElement);
-    const tailwindLoaded = styles.backgroundColor === 'rgb(16, 185, 129)';
+    const tailwindLoaded = styles.backgroundColor === 'rgb(4, 176, 130)';
     document.body.removeChild(testElement);
 
     // Check if custom colors are working
