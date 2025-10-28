@@ -35,6 +35,14 @@ const Footer = () => {
             >
               LinkedIn
             </a>
+            <a 
+              href="https://behance.net/ChristopherKenrick" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-400 hover:text-white transition-colors duration-200"
+            >
+              Bēhance
+            </a>
           </div>
         </div>
       </div>
